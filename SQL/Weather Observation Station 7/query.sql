@@ -2,7 +2,7 @@
 Enter your query here.
 Please append a semicolon ";" at the end of the query and enter your query in a single line to avoid error.
 */
-SELECT DISTINCT City
+SELECT DISTINCT CITY
 FROM Station
-WHERE City LIKE '%A' OR City LIKE '%E' OR City LIKE '%I' 
-OR City LIKE '%O' OR City LIKE '%U';
+WHERE CITY LIKE '%A' OR CITY LIKE '%E' OR CITY LIKE '%I' 
+OR CITY LIKE '%O' OR CITY LIKE '%U';
