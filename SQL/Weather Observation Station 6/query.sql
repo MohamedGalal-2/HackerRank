@@ -4,5 +4,5 @@ Please append a semicolon ";" at the end of the query and enter your query in a 
 */
 SELECT City
 FROM Station
-WHERE City LIKE 'A%' OR City LIKE 'E%' OR City LIKE 'I%' 
-OR City LIKE 'O%' OR City LIKE 'U%';
+WHERE CITY LIKE 'A%' OR CITY LIKE 'E%' OR City LIKE 'I%' 
+OR CITY LIKE 'O%' OR CITY LIKE 'U%';
