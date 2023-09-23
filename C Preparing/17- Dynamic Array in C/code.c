@@ -23,12 +23,6 @@ int main()
 	total_number_of_books = (int*)calloc(total_number_of_shelves, sizeof(int));
 	total_number_of_pages = (int**)calloc(total_number_of_shelves, sizeof(int*));
 
-	for (int i = 0; i < total_number_of_shelves; i++)
-	{
-		total_number_of_books[i] = 0;
-		total_number_of_pages[i] = 0;
-	}
-
 	while (total_number_of_queries--) {
 		int type_of_query;
 		scanf("%d", &type_of_query);
@@ -47,7 +41,10 @@ int main()
 			else
 			{
 				*(total_number_of_books + x) += 1;
-				*(total_number_of_pages + x) = realloc(*(total_number_of_pages + x), *(total_number_of_books + x) * sizeof(int));
+				for (int i = 0; i < total_number_of_shelves; i++)
+				{
+					*(total_number_of_pages + i) = (int**)malloc(*(total_number_of_books + i) * sizeof(int*));
+				}
 				*(*(total_number_of_pages + x) + *(total_number_of_books + x) - 1) = y;
 
 			}
