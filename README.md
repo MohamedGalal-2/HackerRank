@@ -22,7 +22,7 @@ To run these solutions locally, follow these steps:
 
 1. Clone this repository by running the following command:
 
-      git clone https://github.com/MohamedGalal-2/HackerRank.git
+            git clone https://github.com/MohamedGalal-2/HackerRank.git
    
 2. Navigate to the downloaded repository:
 
