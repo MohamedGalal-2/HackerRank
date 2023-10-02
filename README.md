@@ -2,11 +2,11 @@
 This repository contains my solutions to various coding challenges and problems from HackerRank website.
 
 ## Table of Contents
-* Description
-* Languages
-* Setup
-* Contribution
-* License
+- [Description](#Description)
+- [Languages](#Languages)
+- [Setup](#Setup)
+- [Contribution](#Contribution)
+- [License](#License)
 
 ### Description
 HackerRank is a popular online platform that offers coding challenges and competitions. This repository includes my solutions to the problems I have solved on HackerRank. Each solution is provided in its respective folder, named after the corresponding problem.
