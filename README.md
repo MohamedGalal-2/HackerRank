@@ -26,7 +26,7 @@ To run these solutions locally, follow these steps:
    
 2. Navigate to the downloaded repository:
 
-        cd [File_Path]
+            cd [File_Path]
    
 4. Choose the desired problem folder and select a solution file.
    
