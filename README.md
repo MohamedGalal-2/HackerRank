@@ -14,8 +14,8 @@ HackerRank is a popular online platform that offers coding challenges and compet
 ### Languages
 The solutions are implemented in various programming languages including:
 
-C
-SQL
+* C
+* SQL
 
 ### Setup
 To run these solutions locally, follow these steps:
