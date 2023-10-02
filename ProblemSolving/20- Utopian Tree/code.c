@@ -12,72 +12,46 @@
 char* readline();
 char* ltrim(char*);
 char* rtrim(char*);
-char** split_string(char*);
 
 int parse_int(char*);
 
 /*
- * Complete the 'getTotalX' function below.
+ * Complete the 'utopianTree' function below.
  *
  * The function is expected to return an INTEGER.
- * The function accepts following parameters:
- *  1. INTEGER_ARRAY a
- *  2. INTEGER_ARRAY b
+ * The function accepts INTEGER n as parameter.
  */
 
-int getTotalX(int a_count, int* a, int b_count, int* b) {
-    int count = 0;
-
-    for (int i = 0; i < a_count; i++)
+int utopianTree(int n) {
+    int tall = 0;
+    for (int i = 0; i <= n; i++)
     {
-        for (int j = 0; j < b_count; j++)
+        if (i % 2 == 0)
         {
-            if ((a[i] <= a[j]) && (a[i] <= b[j]))
-            {
-                if ((b[j] % a[i] == 0) && (a[j] % a[i] == 0))
-                {
-                    count++;
-                }
-            }
+            tall++;
+        }
+        else if (i % 2 == 1)
+        {
+            tall *= 2;
         }
     }
 
-    return count;
+    return tall;
 }
 
 int main()
 {
     FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
 
-    char** first_multiple_input = split_string(rtrim(readline()));
+    int t = parse_int(ltrim(rtrim(readline())));
 
-    int n = parse_int(*(first_multiple_input + 0));
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        int n = parse_int(ltrim(rtrim(readline())));
 
-    int m = parse_int(*(first_multiple_input + 1));
+        int result = utopianTree(n);
 
-    char** arr_temp = split_string(rtrim(readline()));
-
-    int* arr = malloc(n * sizeof(int));
-
-    for (int i = 0; i < n; i++) {
-        int arr_item = parse_int(*(arr_temp + i));
-
-        *(arr + i) = arr_item;
+        fprintf(fptr, "%d\n", result);
     }
-
-    char** brr_temp = split_string(rtrim(readline()));
-
-    int* brr = malloc(m * sizeof(int));
-
-    for (int i = 0; i < m; i++) {
-        int brr_item = parse_int(*(brr_temp + i));
-
-        *(brr + i) = brr_item;
-    }
-
-    int total = getTotalX(n, arr, m, brr);
-
-    fprintf(fptr, "%d\n", total);
 
     fclose(fptr);
 
@@ -172,27 +146,6 @@ char* rtrim(char* str) {
     *(end + 1) = '\0';
 
     return str;
-}
-
-char** split_string(char* str) {
-    char** splits = NULL;
-    char* token = strtok(str, " ");
-
-    int spaces = 0;
-
-    while (token) {
-        splits = realloc(splits, sizeof(char*) * ++spaces);
-
-        if (!splits) {
-            return splits;
-        }
-
-        splits[spaces - 1] = token;
-
-        token = strtok(NULL, " ");
-    }
-
-    return splits;
 }
 
 int parse_int(char* str) {

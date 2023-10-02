@@ -12,224 +12,156 @@
 char* readline();
 char* ltrim(char*);
 char* rtrim(char*);
-char** split_string(char*);
 
 int parse_int(char*);
 
 /*
- * Complete the 'breakingRecords' function below.
+ * Complete the 'countingValleys' function below.
  *
- * The function is expected to return an INTEGER_ARRAY.
- * The function accepts INTEGER_ARRAY scores as parameter.
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER steps
+ *  2. STRING path
  */
 
- /*
-  * To return the integer array from the function, you should:
-  *     - Store the size of the array to be returned in the result_count variable
-  *     - Allocate the array statically or dynamically
-  *
-  * For example,
-  * int* return_integer_array_using_static_allocation(int* result_count) {
-  *     *result_count = 5;
-  *
-  *     static int a[5] = {1, 2, 3, 4, 5};
-  *
-  *     return a;
-  * }
-  *
-  * int* return_integer_array_using_dynamic_allocation(int* result_count) {
-  *     *result_count = 5;
-  *
-  *     int *a = malloc(5 * sizeof(int));
-  *
-  *     for (int i = 0; i < 5; i++) {
-  *         *(a + i) = i + 1;
-  *     }
-  *
-  *     return a;
-  * }
-  *
-  */
-int* breakingRecords(int scores_count, int* scores, int* result_count) {
-	*result_count = 2;
-	int* score = malloc(sizeof(int) * (*result_count));
-	int break_max = 0;
-	int break_min = 0;
+int countingValleys(int steps, char* path) {
+    int valleys_Count = 0;
+    int i = 0;
 
-	int max = scores[0];
-	int min = scores[0];
-	for (int i = 0; i < scores_count; i++)
-	{
-		if (scores[i] > max)
-		{
-			break_max++;
-			max = scores[i];
-		}
-		else if (scores[i] < min)
-		{
-			break_min++;
-			min = scores[i];
-		}
-	}
+    for (int index = i; index < steps; index++)
+    {
+        if (path[index] == 'D')
+        {
+            if (path[++index] == 'D')
+            {
+                index++;
+            }
+            else
+            {
+                valleys_Count++;
+            }
+        }
+    }
 
 
-	*(score + 0) = break_max;
-	*(score + 1) = break_min;
-	return score;
+
+    return valleys_Count;
 }
 
 int main()
 {
-	FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
+    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
 
-	int n = parse_int(ltrim(rtrim(readline())));
+    int steps = parse_int(ltrim(rtrim(readline())));
 
-	char** scores_temp = split_string(rtrim(readline()));
+    char* path = readline();
 
-	int* scores = malloc(n * sizeof(int));
+    int result = countingValleys(steps, path);
 
-	for (int i = 0; i < n; i++) {
-		int scores_item = parse_int(*(scores_temp + i));
+    fprintf(fptr, "%d\n", result);
 
-		*(scores + i) = scores_item;
-	}
+    fclose(fptr);
 
-	int result_count;
-	int* result = breakingRecords(n, scores, &result_count);
-
-	for (int i = 0; i < result_count; i++) {
-		fprintf(fptr, "%d", *(result + i));
-
-		if (i != result_count - 1) {
-			fprintf(fptr, " ");
-		}
-	}
-
-	fprintf(fptr, "\n");
-
-	fclose(fptr);
-
-	return 0;
+    return 0;
 }
 
 char* readline() {
-	size_t alloc_length = 1024;
-	size_t data_length = 0;
+    size_t alloc_length = 1024;
+    size_t data_length = 0;
 
-	char* data = malloc(alloc_length);
+    char* data = malloc(alloc_length);
 
-	while (true) {
-		char* cursor = data + data_length;
-		char* line = fgets(cursor, alloc_length - data_length, stdin);
+    while (true) {
+        char* cursor = data + data_length;
+        char* line = fgets(cursor, alloc_length - data_length, stdin);
 
-		if (!line) {
-			break;
-		}
+        if (!line) {
+            break;
+        }
 
-		data_length += strlen(cursor);
+        data_length += strlen(cursor);
 
-		if (data_length < alloc_length - 1 || data[data_length - 1] == '\n') {
-			break;
-		}
+        if (data_length < alloc_length - 1 || data[data_length - 1] == '\n') {
+            break;
+        }
 
-		alloc_length <<= 1;
+        alloc_length <<= 1;
 
-		data = realloc(data, alloc_length);
+        data = realloc(data, alloc_length);
 
-		if (!data) {
-			data = '\0';
+        if (!data) {
+            data = '\0';
 
-			break;
-		}
-	}
+            break;
+        }
+    }
 
-	if (data[data_length - 1] == '\n') {
-		data[data_length - 1] = '\0';
+    if (data[data_length - 1] == '\n') {
+        data[data_length - 1] = '\0';
 
-		data = realloc(data, data_length);
+        data = realloc(data, data_length);
 
-		if (!data) {
-			data = '\0';
-		}
-	}
-	else {
-		data = realloc(data, data_length + 1);
+        if (!data) {
+            data = '\0';
+        }
+    }
+    else {
+        data = realloc(data, data_length + 1);
 
-		if (!data) {
-			data = '\0';
-		}
-		else {
-			data[data_length] = '\0';
-		}
-	}
+        if (!data) {
+            data = '\0';
+        }
+        else {
+            data[data_length] = '\0';
+        }
+    }
 
-	return data;
+    return data;
 }
 
 char* ltrim(char* str) {
-	if (!str) {
-		return '\0';
-	}
+    if (!str) {
+        return '\0';
+    }
 
-	if (!*str) {
-		return str;
-	}
+    if (!*str) {
+        return str;
+    }
 
-	while (*str != '\0' && isspace(*str)) {
-		str++;
-	}
+    while (*str != '\0' && isspace(*str)) {
+        str++;
+    }
 
-	return str;
+    return str;
 }
 
 char* rtrim(char* str) {
-	if (!str) {
-		return '\0';
-	}
+    if (!str) {
+        return '\0';
+    }
 
-	if (!*str) {
-		return str;
-	}
+    if (!*str) {
+        return str;
+    }
 
-	char* end = str + strlen(str) - 1;
+    char* end = str + strlen(str) - 1;
 
-	while (end >= str && isspace(*end)) {
-		end--;
-	}
+    while (end >= str && isspace(*end)) {
+        end--;
+    }
 
-	*(end + 1) = '\0';
+    *(end + 1) = '\0';
 
-	return str;
-}
-
-char** split_string(char* str) {
-	char** splits = NULL;
-	char* token = strtok(str, " ");
-
-	int spaces = 0;
-
-	while (token) {
-		splits = realloc(splits, sizeof(char*) * ++spaces);
-
-		if (!splits) {
-			return splits;
-		}
-
-		splits[spaces - 1] = token;
-
-		token = strtok(NULL, " ");
-	}
-
-	return splits;
+    return str;
 }
 
 int parse_int(char* str) {
-	char* endptr;
-	int value = strtol(str, &endptr, 10);
+    char* endptr;
+    int value = strtol(str, &endptr, 10);
 
-	if (endptr == str || *endptr != '\0') {
-		exit(EXIT_FAILURE);
-	}
+    if (endptr == str || *endptr != '\0') {
+        exit(EXIT_FAILURE);
+    }
 
-	return value;
+    return value;
 }
