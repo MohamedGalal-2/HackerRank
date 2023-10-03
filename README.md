@@ -1,4 +1,7 @@
 # HackerRank Solutions
+
+![Header image](https://i0.wp.com/gradsingames.com/wp-content/uploads/2016/05/856771_668224053197841_1943699009_o.png)
+
 This repository contains my solutions to various coding challenges and problems from HackerRank website.
 
 ## Table of Contents
@@ -8,7 +11,6 @@ This repository contains my solutions to various coding challenges and problems 
 - [Contribution](#Contribution)
 - [License](#License)
 
-![Header image](https://i0.wp.com/gradsingames.com/wp-content/uploads/2016/05/856771_668224053197841_1943699009_o.png)
 
 ### Description
 HackerRank is a popular online platform that offers coding challenges and competitions. This repository includes my solutions to the problems I have solved on HackerRank. Each solution is provided in its respective folder, named after the corresponding problem.
