@@ -1,7 +1,5 @@
 # HackerRank Solutions
-
 ![Header image](https://i0.wp.com/gradsingames.com/wp-content/uploads/2016/05/856771_668224053197841_1943699009_o.png)
-
 This repository contains my solutions to various coding challenges and problems from HackerRank website.
 
 ## Table of Contents
